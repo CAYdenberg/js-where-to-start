@@ -10,21 +10,142 @@
         <div class="reveal">
             <div class="slides">
 
+                <section class="title-slide">
+                  <h1>Keeping your Promises: JavaScript Edition</h1>
+                  <h3>Casey A. Ydenberg</h3>
+                  <p><i class="fa-twitter"></i> @CAYdenberg</p>
+                  <p><i class="fa-github"></i> CAYdenberg</p>
+                  <p><i class="fa-globe"></i> caseyy.org</p>
+                </section>
+
+
+
                 <section>
-                    <h2>Slide 1</h2>
+                  <img src="Eleven and Mike" />
 
-                      <pre><code class="javascript">
-var x = 0;
-setTimeout(function() {
-  console.log('Some time later ...');
-}, 1000);
+                  <p><strong>Eleven: </strong>Promise?</p>
+                  <p><strong>Mike: </strong>It's something you can't break. Ever.</p>
+                </section>
 
+
+
+                <section>
+                    <h2>Recap: Synchronous vs asynchonous code</h2>
+
+                      <h3>In PHP:</h3>
+                      <pre><code class="php">
+$data = file_get_contents('http://a/resource/somewhere');
                       </code></pre>
+
+                      <h3>In JavaScript:</h3>
+                      <pre><code class="javascript">
+http.get('http://a/resource/somewhere', function(res) {
+  // deal with response
+});
+                      </code></pre>
+                </section>
+
+
+
+
+                <section>
+                  <h2>Callbacks vs Promises</h2>
+
+                  <div class="2-col">
+                    <div class="column">
+                      <h3>Callback</h3>
+
+                    </div>
+                    <div class="column">
+                      <h3>Promise</h3>
+
+                    </div>
+                  </div>
+
+                  <h3>Advantages</h3>
+                  <ul>
+                    <li>Readability</li>
+                    <li>Dealing with errors</li>
+                    <li>Chaining and returning</li>
+                  </ul>
 
                 </section>
 
+
+
+
                 <section>
-                  <h2>Slide 2</h2>
+                  <h2>Types of Promises</h2>
+                  <ul>
+                    <li>Q (https://github.com/kriskowal/q)</li>
+                    <li>Bluebird (https://github.com/petkaantonov/bluebird)
+                    <li>jQuery deferred (https://api.jquery.com/category/deferred-object/)</li>
+                    <li><strong>ES6/A+ specification</strong></li>
+                  </ul>
+
+                  <h3>Can I use it?</h3>
+                  <img src="browser usage" />
+
+                  <p>Since Node.js 0.12</p>
+
+                  <p>Polyfill: https://github.com/stefanpenner/es6-promise#readme</p>
+
+                  <p>... Babel</p>
+                </section>
+
+
+
+
+                <section>
+                  <h2>How does it work?</h2>
+                  <pre><code class="javascript">
+fetchUrl('https://api.forecast.io/forecast/APIKEY/50.1149639,-122.9486474').then(function(res) {
+    console.log('The current temperature is ' + res.body.currently.temperature);
+}, function(err) {
+    console.log(err)
+});
+                  </code></pre>
+                  <p>... or ...</p>
+                  <pre><code class="javascript">
+fetchUrl('https://api.forecast.io/forecast/APIKEY/50.1149639,-122.9486474').then(function(res) {
+    console.log('The current temperature is ' + res.body.currently.temperature);
+}).catch(function(err) {
+    console.log(err)
+});
+                  </code></pre>
+                </section>
+
+
+                <section>
+                  <h2>Creating you own Promises</h2>
+                  <pre><code class="javascript">
+function wait(time) {
+    return new Promise(function(resolve) {
+        setTimeout(function() {
+            resolve('You kept your Promise!');
+        }, time);
+    });
+}
+                  </code></pre>
+                  <pre><code class="javascript">
+function fetchUrl(url) {
+    return new Promise(function(resolve, reject) {
+        http.get(address, function(response) {
+            if (response.status === 200) {
+                 return resolve(response.body);
+            else {
+                 return reject(Error('Not Found'));
+            }
+        });
+    });
+}
+                  </code></pre>
+                </section>
+
+
+
+                <section>
+                  <h2>The real power: multiple async operations</h2>
 
                 </section>
 

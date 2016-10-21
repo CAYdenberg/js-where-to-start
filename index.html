@@ -100,17 +100,17 @@ http.get('http://a/resource/somewhere', function(res) {
                   <h2>How does it work?</h2>
                   <pre><code class="javascript">
 fetchUrl('https://api.forecast.io/forecast/APIKEY/50.1149639,-122.9486474').then(function(res) {
-    console.log('The current temperature is ' + res.body.currently.temperature);
+  console.log('The current temperature is ' + res.body.currently.temperature);
 }, function(err) {
-    console.log(err)
+  console.log(err)
 });
                   </code></pre>
                   <p>... or ...</p>
                   <pre><code class="javascript">
 fetchUrl('https://api.forecast.io/forecast/APIKEY/50.1149639,-122.9486474').then(function(res) {
-    console.log('The current temperature is ' + res.body.currently.temperature);
+  console.log('The current temperature is ' + res.body.currently.temperature);
 }).catch(function(err) {
-    console.log(err)
+  console.log(err)
 });
                   </code></pre>
                 </section>
@@ -120,24 +120,28 @@ fetchUrl('https://api.forecast.io/forecast/APIKEY/50.1149639,-122.9486474').then
                   <h2>Creating you own Promises</h2>
                   <pre><code class="javascript">
 function wait(time) {
-    return new Promise(function(resolve) {
-        setTimeout(function() {
-            resolve('You kept your Promise!');
-        }, time);
-    });
+  return new Promise(function(resolve) {
+    setTimeout(function() {
+      resolve();
+    }, time);
+  });
 }
+
+wait(1000).then(function() {
+  console.log('Promise kept!');
+})
                   </code></pre>
                   <pre><code class="javascript">
 function fetchUrl(url) {
-    return new Promise(function(resolve, reject) {
-        http.get(address, function(response) {
-            if (response.status === 200) {
-                 return resolve(response.body);
-            else {
-                 return reject(Error('Not Found'));
-            }
-        });
+  return new Promise(function(resolve, reject) {
+    http.get(address, function(response) {
+      if (response.status === 200) {
+        return resolve(response.body);
+      else {
+        return reject(Error('Not Found'));
+      }
     });
+  });
 }
                   </code></pre>
                 </section>
@@ -146,8 +150,71 @@ function fetchUrl(url) {
 
                 <section>
                   <h2>The real power: multiple async operations</h2>
-
+                  <p>Imagine you're making two database queries, and the second depends on the first:</p>
+                  <pre><code class="javascript">
+getDataFromDb(params, function(data) {
+  getMoreDataFromDb(data, function(moreData) {
+    resolve(moreData);
+  });
+});
+                  </code></pre>
                 </section>
+
+
+                <section>
+                  <h2>Wrap everything in a single promise</h2>
+                  <pre><code class="javascript">
+function queryDb(params) {
+  return new Promise(resolve, reject) {
+
+    getDataFromDb(params, function(data) {
+      getMoreDataFromDb(data, function(moreData) {
+        resolve(moreData);
+      });
+    });
+
+  });
+}
+
+queryDb.then(...);
+                </code></pre>
+              </section>
+
+
+
+              <section>
+                <h2>Chaining promises</h2>
+                <p><code class="javascript">.then</code> always returns another promise. Very useful.</p>
+
+                <pre><code class="javascript">
+myPromise.then(function(dataOne) {
+  // process dataOne and create another promise
+  return myOtherPromise(dataOne);
+}).then(function(dataTwo) {
+  // do something with dataTwo
+});
+                </code></pre>
+                <p>Chaining advantages:</p>
+                <ul>
+                  <li>Break the chain anywhere and return. Separate logic based on what makes sense.</li>
+                  <li><code class="javascript">.catch</code> at the end will handle error anywhere in the chain.</li>
+                  <li>You can return another promise but deal with the <em>result</em> of that promise.</li>
+                </ul>
+              </section>
+
+
+
+              <section>
+                <h2>Parallel Promises</h2>
+                <pre><code class="javascript">
+
+                </code></pre>
+
+
+              </section>
+
+
+
 
             </div>
         </div>

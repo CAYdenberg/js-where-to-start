@@ -1,1 +1,21 @@
 
+.reveal h1 {
+  font-size: 2em;
+  color: orange;
+}
+
+.fa {
+  color: orange;
+}
+
+.reveal strong {
+  color: orange;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.reveal img {
+  border: none;
+}

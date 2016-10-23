@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="./bower_components/reveal.js/css/reveal.css">
         <link rel="stylesheet" href="./bower_components/reveal.js/css/theme/night.css">
         <link rel="stylesheet" href="./highlight.js/styles/dracula.css">
@@ -13,18 +14,20 @@
                 <section class="title-slide">
                   <h1>Keeping your Promises: JavaScript Edition</h1>
                   <h3>Casey A. Ydenberg</h3>
-                  <p><i class="fa-twitter"></i> @CAYdenberg</p>
-                  <p><i class="fa-github"></i> CAYdenberg</p>
-                  <p><i class="fa-globe"></i> caseyy.org</p>
+                  <p><i class="fa fa-twitter"></i> @CAYdenberg</p>
+                  <p><i class="fa fa-github"></i> CAYdenberg</p>
+                  <p><i class="fa fa-globe"></i> caseyy.org</p>
                 </section>
 
 
 
                 <section>
-                  <img src="Eleven and Mike" />
+                  <img src="./images/el-mike.jpeg" />
 
-                  <p><strong>Eleven: </strong>Promise?</p>
-                  <p><strong>Mike: </strong>It's something you can't break. Ever.</p>
+                  <div class="text-left">
+                    <p><strong>Eleven: </strong>Promise?</p>
+                    <p><strong>Mike: </strong>It's something you can't break. Ever.</p>
+                  </div>
                 </section>
 
 
@@ -32,12 +35,12 @@
                 <section>
                     <h2>Recap: Synchronous vs asynchonous code</h2>
 
-                      <h3>In PHP:</h3>
+                      <h3>In <strong>PHP:</strong></h3>
                       <pre><code class="php">
 $data = file_get_contents('http://a/resource/somewhere');
                       </code></pre>
 
-                      <h3>In JavaScript:</h3>
+                      <h3>In <strong>JavaScript</strong>:</h3>
                       <pre><code class="javascript">
 http.get('http://a/resource/somewhere', function(res) {
   // deal with response
@@ -84,11 +87,11 @@ http.get('http://a/resource/somewhere', function(res) {
                   </ul>
 
                   <h3>Can I use it?</h3>
-                  <img src="browser usage" />
+                  <img src="./images/browser-support.png" width="440" />
 
                   <p>Since Node.js 0.12</p>
 
-                  <p>Polyfill: https://github.com/stefanpenner/es6-promise#readme</p>
+                  <p><strong>Polyfill:</strong> https://github.com/stefanpenner/es6-promise</p>
 
                   <p>... Babel</p>
                 </section>
@@ -99,15 +102,16 @@ http.get('http://a/resource/somewhere', function(res) {
                 <section>
                   <h2>How does it work?</h2>
                   <pre><code class="javascript">
-fetchUrl('https://api.forecast.io/forecast/APIKEY/50.1149639,-122.9486474').then(function(res) {
+const url = 'https://api.forecast.io/forecast/APIKEY/50.1149639,-122.9486474';
+fetchUrl(url).then(function(res) {
   console.log('The current temperature is ' + res.body.currently.temperature);
 }, function(err) {
   console.log(err)
 });
                   </code></pre>
                   <p>... or ...</p>
-                  <pre><code class="javascript">
-fetchUrl('https://api.forecast.io/forecast/APIKEY/50.1149639,-122.9486474').then(function(res) {
+                  <pre class="fragment"><code class="javascript">
+fetchUrl(url).then(function(res) {
   console.log('The current temperature is ' + res.body.currently.temperature);
 }).catch(function(err) {
   console.log(err)
@@ -131,7 +135,7 @@ wait(1000).then(function() {
   console.log('Promise kept!');
 })
                   </code></pre>
-                  <pre><code class="javascript">
+                  <pre class="fragment"><code class="javascript">
 function fetchUrl(url) {
   return new Promise(function(resolve, reject) {
     http.get(address, function(response) {

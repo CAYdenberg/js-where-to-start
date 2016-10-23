@@ -19,3 +19,8 @@
 .reveal section img {
   border: none;
 }
+
+.reveal blockquote {
+  border-left: 5px solid orange;
+  padding-left: 25px;
+}

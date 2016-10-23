@@ -16,6 +16,7 @@
                   <h3>Casey A. Ydenberg</h3>
                   <p><i class="fa fa-twitter"></i> @CAYdenberg</p>
                   <p><i class="fa fa-github"></i> CAYdenberg</p>
+                  <p><i class="fa fa-email"></i> ydenberg@gmail.com</p>
                   <p><i class="fa fa-globe"></i> caseyy.org</p>
                 </section>
 
@@ -154,14 +155,17 @@ function fetchUrl(url) {
 
                 <section>
                   <h2>The real power: multiple async operations</h2>
-                  <p>Imagine you're making two database queries, and the second depends on the first:</p>
+                  <p>Imagine you're getting some data from a database, and then processing it asynchonously:</p>
                   <pre><code class="javascript">
 getDataFromDb(params, function(data) {
-  getMoreDataFromDb(data, function(moreData) {
-    resolve(moreData);
+  processData(data, function(moreData) {
+    // deal with data
   });
 });
                   </code></pre>
+
+                  <p>If we encapsulate this logic in a function, what do we return?</p>
+
                 </section>
 
 
@@ -211,11 +215,33 @@ myPromise.then(function(dataOne) {
               <section>
                 <h2>Parallel Promises</h2>
                 <pre><code class="javascript">
+<!-- insert Promise.all MDN stuff -->
 
                 </code></pre>
+              </section>
 
+
+              <section>
+                <h2>... but don't forget to catch</h2>
+                <blockquote>
+                  <p>What the actual flying fuck? ...</p>
+                </blockquote>
+
+                <!-- james k nelson stuff -->
 
               </section>
+
+              <section>
+                <h2>Where to do go next</h2>
+                <ul>
+                  <li>me</li>
+                  <li>Jake Archibald</li>
+                  <li>MDN referenece</li>
+                  <li>MDN Promise.all</li>
+                </ul>
+              </section>
+
+
 
 
 

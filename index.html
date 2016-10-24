@@ -68,19 +68,23 @@ http.get('http://a/resource/somewhere', function(res) {
                   <div class="2-col">
                     <div class="column">
                       <h3>Callback</h3>
-
+http.get('http://a/resource/somewhere', function(res) {
+  // deal with response
+});
                     </div>
                     <div class="column">
                       <h3>Promise</h3>
-
+httpPromise.get('http://a/resource/somewhere').then(function(res) {
+  // deal with response
+});
                     </div>
                   </div>
 
                   <h3>Advantages</h3>
                   <ul>
-                    <li>Readability</li>
-                    <li>Dealing with errors</li>
-                    <li>Chaining and returning</li>
+                    <li class="fragment">Readability</li>
+                    <li class="fragment">Dealing with errors</li>
+                    <li class="fragment">Chaining and returning</li>
                   </ul>
 
                 </section>

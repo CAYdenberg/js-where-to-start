@@ -4,11 +4,27 @@
   color: orange;
 }
 
-.fa {
+.reveal h2 {
+  font-size: 1.5em;
   color: orange;
 }
 
-.reveal strong {
+.reveal h3 {
+  font-size: 1.33em;
+  font-weight: 400;
+}
+
+img {
+  display: block;
+}
+
+.reveal pre code {
+  font-size: 0.9em;
+  max-height: 600px;
+}
+
+.reveal strong ,
+.fa {
   color: orange;
 }
 
@@ -28,4 +44,18 @@
 .half {
   float: left;
   width: 50%;
+}
+
+.one-third {
+  float: left;
+  width: 33%;
+}
+
+.two-thirds {
+  float: left;
+  width: 66%
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }

@@ -34,13 +34,17 @@
     <li class="fragment">You might not have a choice</li>
     <li class="fragment">
       "Write once, run anywhere"
-      <img src="./images/browsers.png" />
-      <img src="./images/node.png" />
+      <div>
+        <img src="./images/browsers.png" style="width: 25%" />
+        <img src="./images/node.png" style="width: 25%" />
+      </div>
     </li>
     <li class="fragment">"Culture of openness" (much like Python)</li>
     <li class="fragment">
       Straightforward package management system and large public repositories
-      <img src="./images/npm.svg" />
+      <div>
+        <img src="./images/npm.svg" style="width: 25%" />
+      </div>
     </li>
   </ol>
 </section>
@@ -52,11 +56,11 @@
       <strong>What is JavaScript, anyway?</strong> Specification: ECMA script
       <img src="./images/browsers.png" />
     </li>
-    <li>Compile/build pipelines</li>
-    <li>
+    <li class="fragment">Compile/build pipelines</li>
+    <li class="fragment">
       "JavaScript fatigue"
-      <img src="./images/frameworks.png" />
     </li>
+    <img class="fragment" src="./images/frameworks.png"  />
   </ol>
 </section>
 
@@ -64,7 +68,7 @@
   <h2>A very brief introduction</h2>
   <div>
     <div class="half">
-      <img src="./images/Brenden_Eich.jpg" />
+      <img src="./images/Brendan_Eich.jpg" />
     </div>
     <div class="half">
       <img src="./images/hypercard-home-card.png" />
@@ -75,7 +79,7 @@
 
 <section>
   <h2>Types (sort of)</h2>
-  <div class="half text-left">
+  <div class="one-third text-left">
     <ul>
       <li>Boolean</li>
       <li>Number</li>
@@ -85,22 +89,28 @@
       <li>Object</li>
     </ul>
   </div>
-  <div class="half fragment">
+  <div class="two-thirds">
     <pre><code class="javascript">
 2 + 2
 // 4
+
 var myVar = 2 + 2
 myVar = "four"
 myVar
 // four
+
 true + true
 // 2
+
 "lol" + "lol"
 // "lollol"
+
 "lol" + 2
 // "lol2"
+
 "lol" - 2
 // NaN
+
 Array(16).join("lol" - 2) + "Batman!"
 // "NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNBatman!"
     </code></pre>
@@ -108,10 +118,10 @@ Array(16).join("lol" - 2) + "Batman!"
 </section>
 
 <section>
-  <div class="half">
+  <div class="half text-left">
     <blockquote>
-      Robustness principle: Be conservative in what you send, be liberal in what you accept
-      <footer>The Robustness principle</footer>
+      Be conservative in what you send, be liberal in what you accept
+      <footer>-- The Robustness principle</footer>
     </blockquote>
     <img src="./images/xhtml-error.png" />
   </div>
@@ -165,6 +175,7 @@ Array(16).join("lol" - 2) + "Batman!"
 
 <section>
   <h2>Objects linked to other objects</h2>
+  <p>JavaScript does not have classes!</p>
   <div class="half">
     <pre><code class="javascript">
 var animal = {
@@ -194,7 +205,7 @@ barnacle.name
 <section>
   <h2>Callbacks and Closures</h2>
 
-  <h3>In <strong>Python:</strong></h3>
+  <h3>In Python:</h3>
   <pre><code class="python">
 conn = httplib.HTTPConnection("http://a/resource/somewhere")
 conn.request("POST")
@@ -202,24 +213,24 @@ response = conn.getresponse()
   </code></pre>
 
   <div class="fragment">
-    <h3><strong>JavaScript:</strong></h3>
+    <h3>JavaScript:</h3>
     <pre><code class="javascript">
 http.get('http://a/resource/somewhere', function(res) {
   // deal with response
 });
     </code></pre>
 
-    <div class="fragment">
-      <h3>Example of a closure:</h3>
-      <pre><code class="javascript">
+  <div class="fragment">
+    <h3>Example of a closure:</h3>
+    <pre><code class="javascript">
 var begin = Date.now()
 http.get('http://a/resource/somewhere', function(res) {
-  var end = Date.now()
+var end = Date.now()
   alert(end - begin)
 });
-      </code></pre>
-    </section>
+    </code></pre>
   </div>
+</section>
 
 <section>
   <h2>Example App: Connect with a Django API</h2>

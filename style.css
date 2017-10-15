@@ -24,3 +24,8 @@
   border-left: 5px solid orange;
   padding-left: 25px;
 }
+
+.half {
+  float: left;
+  width: 50%;
+}

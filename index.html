@@ -11,299 +11,229 @@
         <div class="reveal">
             <div class="slides">
 
-                <section class="title-slide">
-                  <h1>JavaScript Beginner Series:<br /> What is a Promise?</h1>
-                  <h3>Casey A. Ydenberg</h3>
-                  <p><i class="fa fa-twitter"></i> @CAYdenberg</p>
-                  <p><i class="fa fa-github"></i> CAYdenberg</p>
-                  <p><i class="fa fa-envelope-o"></i> ydenberg@gmail.com</p>
-                  <p><i class="fa fa-globe"></i> caseyy.org</p>
-                </section>
+<section class="title-slide">
+  <h1>JavaScript: Where to start</h1>
 
+  <div class="half text-left">
+    <h3>Casey A. Ydenberg</h3>
+    <p><i class="fa fa-twitter"></i> @CAYdenberg</p>
+    <p><i class="fa fa-github"></i> CAYdenberg</p>
+    <p><i class="fa fa-envelope-o"></i> ydenberg@gmail.com</p>
+    <p><i class="fa fa-globe"></i> caseyy.org</p>
+  </div>
 
+  <div class="half fragment">
+    <img src="./images/science.jpg" />
+    <footer class="text-left"><small>Cytoskeleton 72(7):349-61</small></footer>
+  </div>
+</section>
 
-                <section>
-                  <img src="./images/el-mike.jpeg" />
+<section>
+  <h2>Why you might want to learn JavaScript</h2>
+  <ol>
+    <li class="fragment">You might not have a choice</li>
+    <li class="fragment">
+      "Write once, run anywhere"
+      <img src="./images/browsers.png" />
+      <img src="./images/node.png" />
+    </li>
+    <li class="fragment">"Culture of openness" (much like Python)</li>
+    <li class="fragment">
+      Straightforward package management system and large public repositories
+      <img src="./images/npm.svg" />
+    </li>
+  </ol>
+</section>
 
-                  <div class="text-left">
-                    <p><strong>Eleven: </strong>Promise?</p>
-                    <p><strong>Mike: </strong>It's something you can't break. Ever.</p>
-                  </div>
-                </section>
+<section>
+  <h2>Why you might not want to learn JavaScript</h2>
+  <ol>
+    <li class="fragment">
+      <strong>What is JavaScript, anyway?</strong> Specification: ECMA script
+      <img src="./images/browsers.png" />
+    </li>
+    <li>Compile/build pipelines</li>
+    <li>
+      "JavaScript fatigue"
+      <img src="./images/frameworks.png" />
+    </li>
+  </ol>
+</section>
 
+<section>
+  <h2>A very brief introduction</h2>
+  <div>
+    <div class="half">
+      <img src="./images/Brenden_Eich.jpg" />
+    </div>
+    <div class="half">
+      <img src="./images/hypercard-home-card.png" />
+    </div>
+  </div>
+  <p><span class="strikethrough">Live</span><strong>Java</strong>Script</p>
+</section>
 
+<section>
+  <h2>Types (sort of)</h2>
+  <div class="half text-left">
+    <ul>
+      <li>Boolean</li>
+      <li>Number</li>
+      <li>String</li>
+      <li>Regular Expression</li>
+      <li>Array</li>
+      <li>Object</li>
+    </ul>
+  </div>
+  <div class="half fragment">
+    <pre><code class="javascript">
+2 + 2
+// 4
+var myVar = 2 + 2
+myVar = "four"
+myVar
+// four
+true + true
+// 2
+"lol" + "lol"
+// "lollol"
+"lol" + 2
+// "lol2"
+"lol" - 2
+// NaN
+Array(16).join("lol" - 2) + "Batman!"
+// "NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNBatman!"
+    </code></pre>
+  </div>
+</section>
 
-                <section>
-                  <img src="./images/pandas.jpg" />
+<section>
+  <div class="half">
+    <blockquote>
+      Robustness principle: Be conservative in what you send, be liberal in what you accept
+      <footer>The Robustness principle</footer>
+    </blockquote>
+    <img src="./images/xhtml-error.png" />
+  </div>
+  <div class="half">
+    <pre><code class="javascript">
+{
+  "latitude": 53.5555501,
+  "longitude": -113.7741251,
+  "timezone": "America/Edmonton",
+  "currently": {
+  "time": 1508093970,
+  "summary": "Clear",
+  "icon": "clear-day",
+  "precipIntensity": 0.0001,
+  "precipProbability": 0.02,
+  "precipType": "rain",
+  "temperature": 52.89,
+  "apparentTemperature": 52.89,
+  "dewPoint": 34.88,
+  "humidity": 0.5,
+  "pressure": 1013.57,
+  "windSpeed": 9.92,
+  "windGust": 16.33,
+  "windBearing": 214,
+  "cloudCover": 0.18,
+  "uvIndex": 2,
+  "visibility": 10,
+  "ozone": 299.59
+  "hourly": {
+  },
+    "summary": "Partly cloudy starting later this afternoon.",
+    "icon": "partly-cloudy-night",
+    "data": [
+      {
+      "time": 1508090400,
+      "summary": "Clear",
+      "icon": "clear-day",
+      "precipIntensity": 0.0001,
+      "precipProbability": 0.02,
+      "precipType": "rain",
+      "temperature": 49.44,
+      "apparentTemperature": 45.57,
+      "dewPoint": 33.24,
+      "humidity": 0.53,
+      "pressure": 1015.06,
+      "windSpeed": 9.35,
+      ...
+    </code></pre>
+  </div>
+</section>
 
-                  <blockquote>
-                    We are committed to ensuring that 2015 will be the last federal election conducted under the first-past-the-post voting system.
-                  </blockquote>
+<section>
+  <h2>Objects linked to other objects</h2>
+  <div class="half">
+    <pre><code class="javascript">
+var animal = {
+  legs: 4,
+  moving: false
+  run: function() {
+    this.moving = true
+    return true
+  }
+}
+animal.name = "Bob"
+    </code></pre>
+  </div>
+  <div class="half fragment">
+    <pre><code class="javascript">
+var barnacle = Object.create(animal)
+barnacle.legs = 0
+barnacle.run = function() {
+  return false
+}
+barnacle.name
+// "Bob"
+    </code></pre>
+  </div>
+</section>
 
-                </section>
+<section>
+  <h2>Callbacks and Closures</h2>
 
+  <h3>In <strong>Python:</strong></h3>
+  <pre><code class="python">
+conn = httplib.HTTPConnection("http://a/resource/somewhere")
+conn.request("POST")
+response = conn.getresponse()
+  </code></pre>
 
-                <section>
-                  <h2>What is a Promise?</h2>
-
-                  <blockquote>
-                    A promise is a container for an asynchronously delivered value
-                    <footer>
-                      -- Dr. Alex Rauschmayer
-                    </footer>
-                  </blockquote>
-                </section>
-
-
-                <section>
-                  <h2>Recap: Synchronous vs asynchonous code</h2>
-
-                  <h3>In <strong>PHP:</strong></h3>
-                  <pre><code class="php">
-$data = file_get_contents('http://a/resource/somewhere');
-                  </code></pre>
-
-                  <div class="fragment">
-                    <h3>In <strong>JavaScript:</strong></h3>
-                    <pre><code class="javascript">
-  http.get('http://a/resource/somewhere', function(res) {
-    // deal with response
-  });
-                    </code></pre>
-                  </div>
-
-                </section>
-
-
-
-
-                <section>
-                  <h2>Callbacks vs Promises</h2>
-
-                  <div class="2-col">
-                    <div class="column">
-                      <h3>Callback</h3>
-                      <pre><code class="javascript">
+  <div class="fragment">
+    <h3><strong>JavaScript:</strong></h3>
+    <pre><code class="javascript">
 http.get('http://a/resource/somewhere', function(res) {
   // deal with response
 });
-                      </code></pre>
-                    </div>
+    </code></pre>
 
-                    <div class="column">
-                      <h3>Promise</h3>
-                      <pre><code class="javascript">
-httpPromise.get('http://a/resource/somewhere').then(function(res) {
-  // deal with response
+    <div class="fragment">
+      <h3>Example of a closure:</h3>
+      <pre><code class="javascript">
+var begin = Date.now()
+http.get('http://a/resource/somewhere', function(res) {
+  var end = Date.now()
+  alert(end - begin)
 });
-                      </code></pre>
-                    </div>
-                  </div>
+      </code></pre>
+    </section>
+  </div>
 
-                  <h3>Advantages</h3>
-                  <ul>
-                    <li class="fragment">Readability</li>
-                    <li class="fragment">Dealing with errors</li>
-                    <li class="fragment">Chaining and returning</li>
-                  </ul>
+<section>
+  <h2>Example App: Connect with a Django API</h2>
+</section>
 
-                </section>
-
-
-
-
-                <section>
-                  <h2>Types of Promises</h2>
-                  <ul>
-                    <li>jQuery deferred (https://api.jquery.com/category/deferred-object/)</li>
-                    <li>Q (https://github.com/kriskowal/q)</li>
-                    <li>Bluebird (https://github.com/petkaantonov/bluebird)
-                    <li><strong>ES6/A+ specification</strong></li>
-                  </ul>
-
-                  <h3>Can I use it?</h3>
-                  <img src="./images/browser-support.png" width="440" />
-
-                  <p>Since Node.js 0.12</p>
-
-                  <p><strong>Polyfill:</strong> https://github.com/stefanpenner/es6-promise</p>
-
-                  <p>... Babel</p>
-                </section>
-
-
-
-
-                <section>
-                  <h2>Creating Promises</h2>
-                  <pre><code class="javascript">
-function wait(time) {
-  return new Promise(function(resolve) {
-
-    setTimeout(function() {
-      resolve('You kept your Promise!');
-    }, time);
-
-  });
-}
-
-wait(1000).then(function(msg) {
-   console.log(msg)
-});
-                  </code></pre>
-                  <pre class="fragment"><code class="javascript">
-function fetchUrl(url) {
-  return new Promise(function(resolve, reject) {
-    http.get(url, function(response) {
-      if (response.status === 200) {
-        return resolve(response.body);
-      else {
-        return reject(Error('Not Found'));
-      }
-    });
-  });
-}
-                  </code></pre>
-                </section>
-
-
-                <section>
-                  <h2>Using Promises</h2>
-                  <pre><code class="javascript">
-const url = 'https://api.forecast.io/forecast/APIKEY/50.1149639,-122.9486474';
-fetchUrl(url).then(function(res) {
-  console.log('The current temperature is ' + res.body.currently.temperature);
-}, function(err) {
-  console.log(err)
-});
-                  </code></pre>
-                  <p>... or ...</p>
-                  <pre class="fragment"><code class="javascript">
-fetchUrl(url).then(function(res) {
-  console.log('The current temperature is ' + res.body.currently.temperature);
-}).catch(function(err) {
-  console.log(err)
-});
-                  </code></pre>
-                </section>
-
-
-
-
-
-
-                <section>
-                  <h2>The real power: multiple async operations</h2>
-                  <p>Imagine you're getting some data from a database, and then processing it asynchonously:</p>
-                  <pre><code class="javascript">
-getDataFromDb(params, function(data) {
-  processData(data, function(processedData) {
-    // deal with data
-  });
-});
-                  </code></pre>
-
-                  <p>If we encapsulate this logic in a function, what do we return?</p>
-
-                </section>
-
-
-                <section>
-                  <h2>Wrap everything in a single promise</h2>
-                  <pre><code class="javascript">
-function queryDb(params) {
-  return new Promise(resolve, reject) {
-
-    getDataFromDb(params, function(data) {
-      getMoreDataFromDb(data, function(processedData) {
-        resolve(processedData);
-      });
-    });
-
-  });
-}
-
-queryDb.then(...);
-                </code></pre>
-              </section>
-
-
-
-              <section>
-                <h2>Chaining promises</h2>
-                <p><code class="javascript">.then</code> always returns another promise. Very useful.</p>
-
-                <pre><code class="javascript">
-myPromise.then(function(dataOne) {
-  // process dataOne and create another promise
-  return myOtherPromise(dataOne);
-}).then(function(dataTwo) {
-  // do something with dataTwo
-});
-                </code></pre>
-                <p>Chaining advantages:</p>
-                <ul>
-                  <li>Break the chain anywhere and return. Separate logic based on what makes sense.</li>
-                  <li><code class="javascript">.catch</code> at the end will handle error anywhere in the chain.</li>
-                  <li>You can return another promise but deal with the <em>result</em> of that promise.</li>
-                </ul>
-              </section>
-
-
-
-              <section>
-                <h2>Parallel Promises</h2>
-                <pre><code class="javascript">
-var p1 = Promise.resolve(3);
-var p2 = 1337;
-var p3 = new Promise(function(resolve, reject) {
-  setTimeout(function() {
-    return "Resolved"
-  }, 1000);
-});
-
-Promise.all([p1, p2, p3]).then(function(values) {
-  console.log(values); // [3, 1337, "Resolved"]
-});
-
-                </code></pre>
-              </section>
-
-
-              <section>
-                <h2>... but don't forget to catch</h2>
-                <blockquote>
-                  <p>What the actual flying fuck? Promises swallows errors by default! Who&rsquo;s idea was that?</p>
-                  <footer>-- Reddit user /u/ledp</footer>
-                </blockquote>
-
-                <pre><code class="javascript">
-new Promise(function(resolve, reject) {
-  resolve('promised value');
-}).then(function(value) {
-  throw Error('error');
-})<span class="fragment">.catch(function(error) {
-  console.error(error.stack);
-});</span>
-                </code></pre>
-                <p>http://jamesknelson.com/are-es6-promises-swallowing-your-errors/</p>
-
-              </section>
-
-
-
-
-              <section>
-                <h2>Acknowledgements</h2>
-                <ul>
-                  <li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/promises">Jake Archibald</a></li>
-                  <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN</a></li>
-                  <li><a href="http://jamesknelson.com/are-es6-promises-swallowing-your-errors/">James K. Nelson</a></li>
-                </ul>
-              </section>
-
-
-
+<section>
+  <h2>Where to go next</h2>
+  <div class="half">
+    <img src="./images/programming-js-applications.jpg" alt="Programming JavaScript applications by Eric Elliot" />
+  </div>
+  <div class="half">
+    <img src="./images/you-dont-know-js.jpg" alt="You Don't Know JavaScript by Kyle Simpson" />
+  </div>
+</section>
 
             </div>
         </div>

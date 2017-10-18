@@ -233,7 +233,26 @@ var end = Date.now()
 </section>
 
 <section>
-  <h2>Example App: Connect with a Django API</h2>
+  <h2>Example App: Simple GET Weather</h2>
+  <div class="two-thirds">
+  </div>
+  <div class="one-third">
+    <button type="button" id="startRequest">Start Request</button>
+    <div id="weather"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Example App: GET and POST chats</h2>
+  <div class="two-thirds">
+  </div>
+  <div class="one-third">
+    <div id="chats"></div>
+    <form id="new-chat">
+      <input id="new-chat-input" name="new-chat" />
+      <button type="submit" id="new-chat-submit">Send</button>
+    </form>
+  </div>
 </section>
 
 <section>
@@ -250,6 +269,7 @@ var end = Date.now()
         </div>
 
         <script src="./bower_components/reveal.js/js/reveal.js"></script>
+        <script src="./bower_components/jquery/dist/jquery.min.js"></script>
         <script src="./highlight.js/highlight.pack.js"></script>
         <script>
             Reveal.initialize({
@@ -259,5 +279,7 @@ var end = Date.now()
             });
             hljs.initHighlightingOnLoad();
         </script>
+        <script src="./app1.js"></script>
+        <script src="./app2.js"></script>
     </body>
 </html>

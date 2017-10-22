@@ -20,6 +20,8 @@
     <p><i class="fa fa-github"></i> CAYdenberg</p>
     <p><i class="fa fa-envelope-o"></i> ydenberg@gmail.com</p>
     <p><i class="fa fa-globe"></i> caseyy.org</p>
+    <img src="./images/TruHome-logo-colour.svg" style="width: 45%" />
+    <img src="./images/ejs_400x400.png"  style="width: 45%; border-radius: 50%" />
   </div>
 
   <div class="half fragment">
@@ -90,7 +92,7 @@
     </ul>
   </div>
   <div class="two-thirds">
-    <pre><code class="javascript">
+    <pre><code class="javascript" style="max-height: 400px">
 var myVar = 2 + 2
 myVar = "four"
 myVar
@@ -133,10 +135,9 @@ var myFuncResult = add2(2)
   <h3>Uses HTTP methods (GET, POST, PUT, DELETE)</h3>
   <h3>Stateless</h3>
   <h3>Data is usually exchanged as JSON</h3>
-  <pre><code class="bash">
-GET https://api.darksky.net/forecast/[key]/[latitude],[longitude]?units=ca
-  </code></pre>
-  <a href="https://darksky.net/dev/docs">Documentation</a>
+  <p>Spec not implementation:
+    <a href="https://darksky.net/dev/docs">documentation tends to be easy to understand</a>
+  </p>
 </section>
 
 <section>
@@ -261,6 +262,30 @@ var end = Date.now()
     <button type="button" id="startRequest">Start Request</button>
     <div id="weather"></div>
   </div>
+  <div class="two-thirds">
+    <pre><code class="javascript">
+function makeRequest(callback) {
+  var requestOptions = {
+    url: 'http://localhost:3000/yeg-weather',
+    method: 'GET',
+    success: callback
+  }
+  $.ajax(requestOptions)
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // When the button is clicked ...
+  document.getElementById('startRequest').addEventListener('click', function() {
+    // get the data ...
+    makeRequest(function(response) {
+      // and put the temperature on the page
+      var currently = response.currently
+      var itIs = 'It is ' + currently.summary + ' and the temperature is ' + currently.temperature + ' C'
+      document.getElementById('weather').innerHTML = itIs
+    })
+  })
+})
+    </code></pre>
 </section>
 
 <section>
@@ -274,9 +299,70 @@ var end = Date.now()
       <button type="submit" id="new-chat-submit">Send</button>
     </form>
   </div>
+  <div class="two-thirds">
+    <pre><code class="javascript" style="max-height: 400px">
+
+function sendChat(payload, callback) {
+  var requestOptions = {
+    url: 'http://localhost:3000/chat',
+    contentType: 'application/json',
+    method: 'POST',
+    data: JSON.stringify(payload),
+    success: callback
+  }
+  $.ajax(requestOptions)
+}
+
+function getChats(callback) {
+  var requestOptions = {
+    url: 'http://localhost:3000/chat',
+    contentType: 'application/json',
+    method: 'GET',
+    success: callback
+  }
+  $.ajax(requestOptions)
+}
+
+// translate the an array of chats (retrieved from API)
+// into a list on the page
+function renderChats(chats) {
+  var chatsElem = document.getElementById('chats')
+  chatsElem.innerHTML = ''
+  chats.forEach(function(chat) {
+    var newElem = document.createElement('li')
+    var textNode = document.createTextNode(chat)
+    newElem.appendChild(textNode)
+    document.getElementById('chats').appendChild(newElem)
+  })
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // get chats from API and render them
+  getChats(renderChats)
+
+  setInterval(function() {
+    getChats(renderChats)
+  }, 1000)
+
+  // when the button is clicked ...
+  document.getElementById('new-chat').addEventListener('submit', function(e) {
+    e.preventDefault()
+    // get the contents of the text box
+    var input = document.getElementById('new-chat-input')
+    var text = input.value
+    // send it to the API
+    sendChat({chat: text}, function(res) {
+      // rerender the chats
+      input.value = ''
+      renderChats(res)
+    })
+  })
+})
+      </code></pre>
+    </div>
 </section>
 
-<section>
+<section style="text-align: center">
   <h2>Where to go next</h2>
   <div class="half">
     <img src="./images/programming-js-applications.jpg" alt="Programming JavaScript applications by Eric Elliot" />

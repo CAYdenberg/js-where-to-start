@@ -91,13 +91,10 @@
   </div>
   <div class="two-thirds">
     <pre><code class="javascript">
-2 + 2
-// 4
-
 var myVar = 2 + 2
 myVar = "four"
 myVar
-// four
+// "four"
 
 true + true
 // 2
@@ -113,8 +110,33 @@ true + true
 
 Array(16).join("lol" - 2) + "Batman!"
 // "NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNBatman!"
+
+function add2(num) {
+  return num + 2
+}
+add2(2)
+// 4
+
+var add2 = function(num) {
+  return num + 2
+}
+
+var myFunc = add2
+var myFuncResult = add2(2)
     </code></pre>
   </div>
+</section>
+
+<section>
+  <h2>What is REST?</h2>
+  <h3>A request to URL for <em>data</em> instead of a document</h3>
+  <h3>Uses HTTP methods (GET, POST, PUT, DELETE)</h3>
+  <h3>Stateless</h3>
+  <h3>Data is usually exchanged as JSON</h3>
+  <pre><code class="bash">
+GET https://api.darksky.net/forecast/[key]/[latitude],[longitude]?units=ca
+  </code></pre>
+  <a href="https://darksky.net/dev/docs">Documentation</a>
 </section>
 
 <section>
@@ -151,23 +173,22 @@ Array(16).join("lol" - 2) + "Batman!"
   "visibility": 10,
   "ozone": 299.59
   "hourly": {
-  },
     "summary": "Partly cloudy starting later this afternoon.",
     "icon": "partly-cloudy-night",
     "data": [
       {
-      "time": 1508090400,
-      "summary": "Clear",
-      "icon": "clear-day",
-      "precipIntensity": 0.0001,
-      "precipProbability": 0.02,
-      "precipType": "rain",
-      "temperature": 49.44,
-      "apparentTemperature": 45.57,
-      "dewPoint": 33.24,
-      "humidity": 0.53,
-      "pressure": 1015.06,
-      "windSpeed": 9.35,
+        "time": 1508090400,
+        "summary": "Clear",
+        "icon": "clear-day",
+        "precipIntensity": 0.0001,
+        "precipProbability": 0.02,
+        "precipType": "rain",
+        "temperature": 49.44,
+        "apparentTemperature": 45.57,
+        "dewPoint": 33.24,
+        "humidity": 0.53,
+        "pressure": 1015.06,
+        "windSpeed": 9.35,
       ...
     </code></pre>
   </div>
@@ -226,7 +247,7 @@ http.get('http://a/resource/somewhere', function(res) {
 var begin = Date.now()
 http.get('http://a/resource/somewhere', function(res) {
 var end = Date.now()
-  alert(end - begin)
+  console.log(end - begin)
 });
     </code></pre>
   </div>
@@ -247,7 +268,7 @@ var end = Date.now()
   <div class="two-thirds">
   </div>
   <div class="one-third">
-    <div id="chats"></div>
+    <ul id="chats"></ul>
     <form id="new-chat">
       <input id="new-chat-input" name="new-chat" />
       <button type="submit" id="new-chat-submit">Send</button>

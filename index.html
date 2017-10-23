@@ -112,6 +112,8 @@ true + true
 // NaN
 
 var myArray = ["lol", 2, false]
+myArray[0]
+// "lol"
 
 var myArray = Array(2)
 
@@ -252,7 +254,7 @@ http.get('http://a/resource/somewhere', function(res) {
     <pre><code class="javascript">
 var begin = Date.now()
 http.get('http://a/resource/somewhere', function(res) {
-var end = Date.now()
+  var end = Date.now()
   console.log(end - begin)
 });
     </code></pre>
